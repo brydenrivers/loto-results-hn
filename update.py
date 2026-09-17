@@ -2,8 +2,8 @@
 """
 Refresh results.json with any draws that have landed since the last run.
 
-Designed to run unattended from GitHub Actions three times a day, shortly after
-each draw (11:00 / 15:00 / 21:00 Honduras, UTC-6).
+Designed to run unattended from GitHub Actions every hour; draws land at
+11:00 / 15:00 / 21:00 Honduras (UTC-6), and the sources post them late.
 
     python update.py              # normal: catch up from the newest stored day
     python update.py --start 2026-09-01   # force a re-fetch from a given day

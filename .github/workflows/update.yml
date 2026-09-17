@@ -2,11 +2,16 @@ name: Update results
 
 on:
   schedule:
-    # Honduras is UTC-6 year round. Draws land at 11:00 / 15:00 / 21:00 local,
-    # i.e. 17:00 / 21:00 / 03:00 UTC. Run 40 minutes after each so the sources
-    # have published. GitHub delays scheduled runs under load; that is fine,
-    # every run catches up from whatever is already stored.
-    - cron: '40 3,17,21 * * *'
+    # Hourly, at :17 (off the top of the hour, when GitHub's queue is busiest).
+    # Draws land at 11:00 / 15:00 / 21:00 Honduras (UTC-6), but the sources post
+    # them late and unpredictably: on 2026-09-17 the 16 Sep noche draw was
+    # still missing at 02:54 local, and the old three-a-day schedule left it
+    # unpublished until a manual run at 11:54. Checking every hour bounds that
+    # gap. A run with nothing new commits nothing, and every run catches up
+    # from whatever is already stored, so late or skipped runs are harmless.
+    # Side effect: a disputed slot now turns every hourly run red until a
+    # human resolves it (see "Flag disputed slots" below).
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 # Never let two runs write results.json at once.

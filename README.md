@@ -6,7 +6,8 @@ single JSON file so an installed phone app can stay current without a backend.
 - **Feed:** [`results.json`](results.json)
 - **Coverage:** every daily draw since 2020-06-10, three per day —
   11:00 (mañana), 15:00 (tarde), 21:00 (noche), Honduras time (UTC-6).
-- **Updated:** automatically, three times a day, 40 minutes after each draw.
+- **Updated:** automatically, checked every hour. A new draw usually appears
+  within an hour or two of the source sites posting it.
 
 These are published lottery results. Nothing here is personal data, and nothing
 in this repository identifies anyone.
@@ -50,7 +51,8 @@ first written gets its later slots filled in place.
 
 Results come from resuloto and are **cross-checked against lotodehonduras**.
 When the two disagree about a slot, that slot is published as `..` rather than
-guessed, and the scheduled run is marked failed so a human resolves it. This is
+guessed, and the scheduled run is marked failed so a human resolves it (every
+hourly run stays failed until then). This is
 not hypothetical: resuloto has historically served a wrong `00` for a main
 number, which is the entire reason the second source is consulted.
 
